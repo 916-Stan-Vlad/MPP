@@ -12,30 +12,21 @@ import {
 	Container,
 	IconButton,
 	Tooltip,
+	//TextField,
+	Button,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { BACKEND_API_URL } from "../../constants";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
+
 export const RestaurantShowAll= () => {
-  // const [restaurants, setRestaurants] = useState([]);
-  //
-  // useEffect(() => {
-	// 	fetch('http://127.0.0.1:8000/restaurants/' )
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			console.log(data);
-	// 			setRestaurants(data);
-	// 		});
-	// }, []);
-  //
-  // if (restaurants.length === 0) {
-	// 	return <div>No restaurants</div>;
-	// }
+
 	const [loading, setLoading] = useState(false);
 	const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+    const navigate = useNavigate();
 
 	useEffect(() => {
 		setLoading(true);
@@ -48,35 +39,19 @@ export const RestaurantShowAll= () => {
 	}, []);
 
 
+	let handleClick = () => {
+		 navigate(`/owner`)
+    }
+
+
   return (
-    // <div className="App">
-    //     <h1>
-    //         Restaurant list
-    //     </h1>
-    //     <table>
-    //         <tr>
-    //             <th>#</th>
-    //             <th>Restaurant name</th>
-    //             <th>Description</th>
-    //             <th>Menu review</th>
-    //             <th>Review</th>
-    //             <th>Owner</th>
-    //         </tr>
-    //         {restaurants.map((restaurant:Restaurant, index)=>(
-    //             <tr key={index}>
-    //                 <td>{index}</td>
-    //                 <td>{restaurant.restaurant_name}</td>
-    //                 <td>{restaurant.description}</td>
-    //                 <td>{restaurant.menu_review}</td>
-    //                 <td>{restaurant.review}</td>
-    //                 <td>{restaurant.owner?.owner_name}</td>
-    //             </tr>
-    //         ))
-    //         }
-    //     </table>
-    // </div>
       <Container>
 			<h1>All restaurants</h1>
+		  	<div>
+            <Button onClick={handleClick} sx={{ mr: 3 }}  variant="contained" style={{color:"whitesmoke"}}>
+                Owners
+            </Button>
+            </div>
 
 			{loading && <CircularProgress />}
 			{!loading && restaurants.length === 0 && <p>No restaurants found</p>}

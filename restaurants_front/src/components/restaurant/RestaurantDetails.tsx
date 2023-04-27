@@ -14,9 +14,6 @@ export const RestaurantDetails = () => {
 
 	useEffect(() => {
 		const fetchCourse = async () => {
-			// TODO: use axios instead of fetch
-			// TODO: handle errors
-			// TODO: handle loading state
 			const response = await fetch(`${BACKEND_API_URL}/restaurants/${restaurantId}`);
 			const restaurant = await response.json();
 			setRestaurant(restaurant);
@@ -32,7 +29,7 @@ export const RestaurantDetails = () => {
 						<ArrowBackIcon />
 					</IconButton>{" "}
 					<h1>Restaurant Details</h1>
-					<p>Course Name: {restaurant?.restaurant_name}</p>
+					<p>Restaurant Name: {restaurant?.restaurant_name}</p>
 					<p>Course Description: {restaurant?.description}</p>
                     <p>Course Description: {restaurant?.menu_review}</p>
                     <p>Course Description: {restaurant?.review}</p>
